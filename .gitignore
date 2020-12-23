@@ -1,0 +1,21 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+HELP.md
+target/
+.mvn
+/log
+
+out
+logs
+build
+gradle
+gradlew
+gradlew.bat
+
+.gradle
+
+build/

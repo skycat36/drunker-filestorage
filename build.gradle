@@ -1,0 +1,60 @@
+buildscript {
+
+    ext {
+        projectGroupName 	= 'com.vsu'
+        springBootVersion 	= '2.2.4.RELEASE'
+        junitVersion 		= '4.12'
+        restAssuredVersion 	= '2.9.0'
+        hibernateVersion = "5.4.2.Final"
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
+group 'com.vsu'
+sourceCompatibility = 1.8
+
+archivesBaseName  = 'drunker-filestorage'
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+}
+
+dependencies {
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    compile group: 'io.minio', name: 'minio', version: '6.0.13'
+
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.7.0'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    testCompile "junit:junit:${junitVersion}"
+    testCompile "com.jayway.restassured:rest-assured:${restAssuredVersion}"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
