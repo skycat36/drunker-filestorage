@@ -5,7 +5,7 @@ services:
     image: springboot-app
     build: ./
     ports:
-      - "8080:8080"
+      - "8085:8085"
     environment:
       - MINIO_SERVER_ACCESS_KEY=minio-access-key
       - MINIO_SERVER_SECRET_KEY=minio-secret-key
