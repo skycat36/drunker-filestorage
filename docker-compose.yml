@@ -11,6 +11,8 @@ services:
       - MINIO_SERVER_SECRET_KEY=minio-secret-key
     depends_on:
       - minio
+    networks:
+      - drunker_network
 
  minio:
     container_name: minio
@@ -20,3 +22,8 @@ services:
     environment:
       - MINIO_ACCESS_KEY=minio-access-key
       - MINIO_SECRET_KEY=minio-secret-key
+
+networks:
+  default:
+    external:
+      name: drunker_network

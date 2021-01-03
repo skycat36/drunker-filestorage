@@ -27,11 +27,11 @@ public class FileStorageService {
         this.minioClient = minioClient;
     }
 
-    public byte[] getArrBytesFromBucket(String fileId, Bucket bucket) {
-        try (InputStream stream = minioClient.getObject(bucket.getBucketName(), fileId)) {
+    public byte[] getArrBytesFromBucket(String name, Bucket bucket) {
+        try (InputStream stream = minioClient.getObject(bucket.getBucketName(), name)) {
             return IOUtils.toByteArray(stream);
         } catch (Exception e) {
-            throw new StorageMinioException("Can't get file \"" + fileId +"\" from bucket: " + bucket, e);
+            throw new StorageMinioException("Can't get file \"" + name +"\" from bucket: " + bucket, e);
         }
     }
 
