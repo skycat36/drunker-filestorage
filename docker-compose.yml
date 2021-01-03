@@ -1,6 +1,6 @@
 version: '3.1'
 services:
- app:
+ app-filestorage:
     container_name: springboot-filestorage
     image: springboot-app
     build: ./
@@ -22,8 +22,10 @@ services:
     environment:
       - MINIO_ACCESS_KEY=minio-access-key
       - MINIO_SECRET_KEY=minio-secret-key
+    networks:
+      - drunker_network
 
 networks:
-  default:
-    external:
+  drunker_network:
+      external: true
       name: drunker_network
